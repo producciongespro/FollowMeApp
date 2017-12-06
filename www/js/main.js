@@ -173,22 +173,20 @@ function showInfo(info,cual) {
   $("#panelJuego").css('filter', 'blur(5px)');
   $("#student_deck").css('filter', 'blur(5px)');
   $("#botones").css('filter', 'blur(5px)');
+  $("#paraNivel").css('filter', 'blur(5px)');
   $("#infoMensaje").attr("src",info);
   $("#informacion").css('visibility', 'visible');
   if (cual != "creditos") {
     $("#cerrar").css('visibility', 'hidden');
   }
   $("#infoMensaje").attr("width","100%");
-  // setTimeout(function(){
-  //     $("#imgBackground").css('filter', 'blur(0px)');
-  // }, 2000);
-
     setTimeout(function(){
       if (cual != "creditos") {
         $("#imgBackground").css('filter', 'blur(0px)');
         $("#panelJuego").css('filter', 'blur(0px)');
         $("#student_deck").css('filter', 'blur(0px)');
         $("#botones").css('filter', 'blur(0px)');
+        $("#paraNivel").css('filter', 'blur(0px)');
         $("#informacion").css('visibility', 'hidden');
         $("#cerrar").css('visibility', 'hidden');
       }
@@ -198,15 +196,13 @@ function showInfo(info,cual) {
     }
     }
 
-// $("#imgBackground").css('filter', 'blur(0px)');
-
-
 function hideInfo() {
   $("#informacion").css('visibility', 'hidden');
   $("#imgBackground").css('filter', 'blur(0px)');
   $("#panelJuego").css('filter', 'blur(0px)');
   $("#student_deck").css('filter', 'blur(0px)');
   $("#botones").css('filter', 'blur(0px)');
+  $("#paraNivel").css('filter', 'blur(0px)');
   $("#cerrar").css('visibility', 'hidden');
 }
 
@@ -686,7 +682,9 @@ $("#imgBackground").css('filter', 'grayscale(80%)');
 $("#panelJuego").css('filter', 'grayscale(80%)');
 $("#student_deck").css('filter', 'grayscale(80%)');
 $("#botones").css('filter', 'grayscale(80%)');
+$("#paraNivel").css('filter','grayscale(80%)');
 $("#paraImagenes").css('filter', 'grayscale(0%)');
+
 $("#paraImagenes").html("<img src='img/img_"+imgHtml+".png'><center><p id='palabraPeq'>"+imgHtml+"</p></center>");
 
 $("#paraImagenes").css("visibility","visible");
@@ -695,34 +693,12 @@ $("#paraImagenes").css("visibility","visible");
       $("#panelJuego").css('filter', 'grayscale(0%)');
       $("#student_deck").css('filter', 'grayscale(0%)');
       $("#botones").css('filter', 'grayscale(0%)');
+      $("#paraNivel").css('filter','grayscale(0%)');
       $("#paraImagenes").css("visibility", "hidden")
     }, 2000);
 }
 
-
-//     $("#dialogMsg").html("<p> <img src='img/img_"+imgHtml+".png'> <p> <p>"+imgHtml+"</p>" );
-//     $( "#dialogMsg" ).dialog({
-//         minWidth: 200,
-//         minHeight: 200,
-//         resizable: false,
-//         modal: true,
-//         width:'auto',
-//         draggable: false,
-//         background-color:rgba(0,0,0,0.01);
-//         title: imgHtml
-//     });
-// $(".ui-dialog-titlebar" ).css("display", "none" );
-// $("#dialogMsg").dialog("option", "width", 600);
-// $("#dialogMsg").dialog("option", "height", 300);
-
-
 function showMessage(texto) {
-console.log("Tratando de enviar mensaje");
-  // var ventanaMensaje = ("<div id='confirmacion'><p >"+texto+"</p>");
-  // $("#main_container").append(ventanaMensaje);
-  // $("#confirmacion").attr("visible","visible");
-    //audio.play();
-
     $("#dialogMsg").html("<p>"+texto+"<p>");
 
     $( "#dialogMsg" ).dialog({
@@ -735,8 +711,6 @@ console.log("Tratando de enviar mensaje");
         title: texto
     });
   $(".ui-dialog-titlebar" ).css("display", "none" );
-  // $("#dialogMsg").dialog("option", "width", 600);
-  // $("#dialogMsg").dialog("option", "height", 300);
     setTimeout(function(){
         $( "#dialogMsg" ).dialog( "close" );
     }, 2000);
@@ -747,10 +721,6 @@ function showLevel(texto) {
   $("#main_container").append(ventanaMensaje);
   $("#confirmacion").html("<img src='interfase/gane_nivel.jpg'>");
   $("#confirmacion").attr("visible","visible");
-
-
-// $("#dialogMsg").removeAttr("style");
-
     $("#dialogMsg").html("<img src='interfase/gane_nivel.jpg' id='cambioNivel'>");
     $( "#dialogMsg" ).dialog({
 
