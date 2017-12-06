@@ -418,9 +418,8 @@ body {
 }
 
 .mensaje{
-  margin-top: 6%;
-  left: 50%;
-  margin-left: -362px;
+  margin-top: 8vw;
+  left: 14vw;
   padding: 0%;
   visibility: hidden;
   z-index: 200;
@@ -471,10 +470,10 @@ body {
 
 .divTextos {
 position: absolute;
-left: 12vw;
+left: 8vw;
 top: 28vw;
 z-index: 200;
-width: 300px; // El tamaño de ancho de tu div
+width: 33%; // El tamaño de ancho de tu div
 height: 200px; // El tamaño de alto de tu div
 font-size: 24vw;
 color: yellow;
