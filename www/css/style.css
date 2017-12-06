@@ -1,0 +1,598 @@
+span{
+  color: #CEF3FC;
+  font-family: sans-serif;
+}
+
+#btn_left{
+    float: left;
+    top: 0;
+    width: 25%;
+}
+#btn_right{
+    float: right;
+    width: 25%;
+}
+
+
+.width2 {
+    width: 46%;
+    /*background: #F9D237;*/
+    position: relative;
+    display: inline-block;
+    margin: 1%;
+    vertical-align: top;
+    box-shadow: 0 0 4px rgba(0,0,0,.3);
+}
+.width2:before {
+    display: block;
+}
+
+.contenido {
+   position: absolute;
+   top: 0; left: 0; bottom: 0; right: 0;
+   font-size: 1.5rem;
+   /*color: #444;*/
+}
+
+.width {
+    width: 45%;
+    /*background: #F9D237;*/
+    position: relative;
+    display: inline-block;
+    margin: 1%;
+    vertical-align: top;
+    box-shadow: 0 0 4px rgba(0,0,0,.3);
+}
+.width:before {
+    content: '';
+    display: block;
+}
+.ratio1-1:before {padding-top: 100%;}
+.ratio3-1:before {padding-top: 33%;}
+.ratio4-3:before {padding-top: 75%;}
+.ratio16-9:before {padding-top: 56.25%;}
+.contenido {
+   position: absolute;
+   top: 0; left: 0; bottom: 0; right: 0;
+   font-size: 1.5rem;
+   /*color: #444;*/
+}
+
+table {
+	width: 100%;
+	height: 100%;
+}
+
+td {
+	width: 25%;
+	height: 25%;
+	background-color: black;
+	border: 3px solid black;
+	border-radius: 5px;
+}
+
+.letra {
+	color: white;
+	font-size: 40px;
+	text-align: center;
+	font-style: italic;
+}
+
+input {
+	width: 90px;
+	height: 30px;
+}
+
+.centrar {
+	margin-left: 210px;
+}
+
+.profesor{
+width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+}
+
+#cuerpo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+}
+
+#contenedor {
+  margin-top: 0%;
+  margin-left: 0%;
+  height: 80%;
+  width: 100%;
+  background-color: #fff;
+}
+
+.enlinea{
+      width: 39%;
+      border-style: outset;
+      cursor: pointer;
+      display: inline-block;
+}
+
+.tg  {
+  border-collapse:collapse;border-spacing:0;margin:0px auto;
+}
+
+.tg td{
+  font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;
+}
+
+.tg th{
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;
+}
+
+.tg .tg-qbrl{
+  font-size:36px;vertical-align:top
+}
+
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}
+}
+
+div {
+  position: absolute;
+}
+body {
+  background-color: #000;
+  margin: 0;
+}
+#imgBackground {
+  position: absolute;
+  margin-top: 0%;
+  left: 0;
+  /*height: 100%;*/
+  width: 100%;
+  z-index: -1;
+}
+
+/*#salir {
+  width: 10%;
+  height: 18%;
+  margin-top: 34%;
+  margin-left: 36vw;
+  position: absolute; important
+}*/
+
+.salida{
+      width: 29vw;
+      height: 13vw;
+      top: 32vw;
+      left: 36vw;
+      display: inline-block !important;
+      position: absolute;
+}
+
+#nop{
+  float: right;
+}
+
+#si{
+  float: left;
+}
+
+#cerrar {
+  right: 1%;
+  top: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-style: outset;
+  cursor: pointer;
+}
+
+.main_container {
+  height: 95%;
+  width: 95%;
+  top: 2.5%;
+  left: 2.5%;
+
+  /*background-color: #98cc86;*/
+}
+
+.panelGrande {
+  width: 97%;
+  margin-top: 9%;
+  left: 2%;
+  height: 47%;
+  /*background-color: #6d9060;*/
+  /*background: rgba(255, 0, 0, 0.5);*/
+}
+
+.panel {
+  width: 45.5%;
+  /*top: 0.5%;*/
+  max-width: 600px;
+  height: auto;
+}
+
+#teacher_deck{
+  top: 20%;
+    float:left;
+  margin-left: 2%;
+  border-radius: 3%;
+  padding-right: 6px;
+
+}
+
+#teacher_panel {
+  top: 6%;
+  float:left;
+  margin-left: 2%;
+  background-image: url(../interfase/fondoPanel.png);
+  background-size: cover;
+  background-position: center;
+  /*background-color: rgb(162,203, 7);*/
+  border-radius: 3%;
+  padding-right: 6px;
+  box-sizing: content-box;
+  box-shadow: 2px 2px 5px rgba(71,71,71,1);
+}
+#student_panel {
+	  top: 6%;
+    float: right;
+    /*left: -2%;*/
+    /*height: 100%;*/
+    margin-left: 2%;
+    background-image: url(../interfase/fondoPanel.png);
+    background-size: cover;
+    background-position: center;
+    /*background-color: rgb(162,203, 7);*/
+    border-radius: 3%;
+    padding-right: 6px;
+    box-sizing: content-box;
+    box-shadow: 2px 2px 5px rgba(71,71,71,1);
+}
+
+#student_deck{
+    left: 54%;
+    margin-top: 31%;
+}
+
+.card_deck {
+  width: 43%;
+  top: 4%;
+  /*background-color: rgba(0, 255, 0, 0.5);*/
+
+
+}
+.grid {
+  position: relative;
+  display: inline-block;
+  height: 81%;
+  width: 22%;
+  background-color: rgb(5, 117, 157);
+  margin-left: 2%;
+  margin-top: 1%;
+  border-radius: 12%;
+}
+
+.gridDraws {
+  position: relative;
+  display: inline-block;
+  height: 61%;
+  width: 22%;
+  background-color: rgb(5, 117, 157);
+  margin-left: 2%;
+  margin-top: 1%;
+  border-radius: 12%;
+}
+
+.cards {
+  position:absolute;
+  height:100%;
+  z-index:6;
+  top: 0;  bottom: 0;
+  margin:0px auto;
+  margin-left: 5%;
+  border-radius: 12%;
+  display: none;
+}
+
+.cardsL {
+  position:absolute;
+  width:100%;
+  z-index:6;
+  top: 0;  bottom: 0;
+  margin:0px auto;
+  margin-left: 0%;
+  border-radius: 12%;
+  display: none;
+}
+
+.cardsR {
+  position:absolute;
+  width:100%;
+  z-index:6;
+  top: 0;  bottom: 0;
+  margin:0px auto;
+  margin-left: 0%;
+  border-radius: 12%;
+  /*display: none;*/
+}
+
+.Stud_cards {
+  position:absolute;
+  height:100%;
+  z-index:6;
+  top: 0;  bottom: 0;
+  margin:0px auto;
+  margin-left: 5%;
+  border-radius: 12%;
+  display: none;
+}
+
+.s_cards {
+  position: absolute;
+  cursor: pointer;
+  left: 35%;
+  top: 11%;
+  bottom: 0%;
+  width: 31%;
+  z-index: 4;
+}
+
+
+.letterCards {
+  font-size: 4vw;
+  font-weight: bold;
+  color: #9d1def;
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+  background-color: #f9b938;
+  background-image: url(../interfase/fondo_tarjeta.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 15%;
+}
+
+.engravedImages {
+  font-size: 4vw;
+  font-weight: bold;
+  color: #9d1def;
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+  background-color: #f9b938;
+  background-image: url(../interfase/fondo_tarjeta.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 15%;
+  margin-top: 0%;
+  /*top: -10%;*/
+}
+
+.container_scards {
+  position: relative;
+  display: inline-block;
+  width: 22%;
+  height: 60%;
+  margin-left: 2.5%;
+  margin-top: 15%;
+  /*background-color: rgba(255, 0, 0, 0.5);*/
+}
+
+.letterCardsStudent {
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+  font-size: 4vw;
+  font-weight: bold;
+  color: #9d1def;
+  border-radius: 15%;
+  background-color: #f9b938;
+  background-image: url(../interfase/fondo_tarjeta.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  height: 5vw;
+  width: 9vw;
+  display: inline;
+}
+
+
+
+
+
+.buttons {
+  /*background-color: rgba(255, 0, 0, 0.5);*/
+  top: 0;
+  bottom: 0;
+  height: 25%;
+  cursor: pointer;
+}
+
+
+.botonera{
+  margin-top: 0%;
+  margin-left: 76%;
+  padding: 1%;
+  height: 41%;
+  visibility: hidden;
+}
+
+.mensaje{
+  margin-top: 6%;
+  left: 50%;
+  margin-left: -362px;
+  padding: 0%;
+  visibility: hidden;
+  z-index: 200;
+  border-style: outset;
+  /*border: 3px;*/
+}
+
+.cliqueables{
+  margin-top: 2%;
+  margin-left: 0%;
+  height: 14%;
+  cursor: pointer;
+}
+
+
+#imgDeck {
+	position: absolute;
+	left: 31%;
+	top: 1%;
+  width: 40%;
+}
+
+#progress {
+  left: 79%;
+  top: -2%;
+  width: 20%;
+  height:10%;
+}
+
+#pBar {
+  position: absolute;
+  width: 100%;
+  /*height: 100%;*/
+  left: 0;
+  top: 0;
+}
+
+.oculta{
+  visibility: hidden;
+}
+
+#dialogMsg {
+  text-align: center;
+  background-color: : rgba(0,0,0,0.01);
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+}
+
+.divTextos {
+position: absolute;
+left: 12vw;
+top: 28vw;
+z-index: 200;
+width: 300px; // El tamaño de ancho de tu div
+height: 200px; // El tamaño de alto de tu div
+font-size: 24vw;
+color: yellow;
+align-items: center;
+margin: -100px 0 0 -150;
+border-style: outset;
+visibility: hidden;
+}
+
+.palabra{
+  font-size: 7vw;
+  color: yellow;
+  font-family: sans-serif;
+  margin: 0 auto;
+}
+
+.palabraMediana{
+  font-size: 5vw;
+  color: yellow;
+  font-family: sans-serif;
+  margin: 0 auto;
+}
+
+#palabraPeq{
+  font-size: 4vw;
+  color: yellow;
+  font-family: sans-serif;
+  margin: 0 auto;
+}
+
+.divImagenes {
+position: absolute;
+left: 38vw;
+top: 19vw;
+z-index: 200;
+width: 300px; // El tamaño de ancho de tu div
+height: 200px; // El tamaño de alto de tu div
+font-size: 12vw;
+color: white;
+align-items: center;
+margin: -100px 0 0 -150; // el primer valor será la mitad de la altura de tu anterior div, y el último la mitad del ancho.
+
+}
+
+.divLevel{
+  position: absolute;
+  left: 70%;
+  top: 8vw;
+  z-index: 50;
+  width: 200px; // El tamaño de ancho de tu div
+  height: 100px; // El tamaño de alto de tu div
+}
+
+#paraNivel{
+font-size: 2vw;
+color: white;
+font-family: fantasy;
+}
+
+#cambioNivel{
+  top: 0%;
+  left: 0%;
+}
+
+.A{
+	background: red;
+}
+
+.B{
+	background: blue;
+}
+
+#flotante{
+	overflow: hidden;
+	width: 100%; /*TamaÃ±o definido */
+}
+
+#flotante .A, #flotante .B{
+	float: left;
+}
+
+#bloque{
+	width: 100%;
+}
+
+#bloque .A, #bloque .B{
+	display: inline-block;
+}
+
+#tabla{
+	width: 35%;
+}
+
+#tabla .A, #tabla .B{
+	display: table-cell;
+}
+
+#posicion{
+	position: relative;
+	padding: 0;
+}
+
+#posicion .B{
+	position: absolute;
+	left: 200px;
+	top: 0;
+}
+
+.noTitleStuff .ui-dialog-titlebar {display:none}
+
+#confirmacion{
+position: absolute;
+top: 10px;
+left: 15px;
+visibility: hidden;
+background-color: rgba(96,96,96,0.8);
+padding: 30px;
+color:white;
+height: 230;
+width: 200;
+}
