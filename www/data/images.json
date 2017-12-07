@@ -79,5 +79,7 @@
   {"id":77, "name":"img_zebra", "word":"zebra"},
   {"id":78, "name":"img_zip", "word":"zip"},
   {"id":79, "name":"img_zombie", "word":"zombie"},
-  {"id":80, "name":"img_zoo", "word":"zoo"}
+  {"id":80, "name":"img_zoo", "word":"zoo"},
+  {"id":81, "name":"img_mat", "word":"mat"},
+  {"id":82, "name":"img_tin", "word":"tin"}
 ]
