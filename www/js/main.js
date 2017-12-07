@@ -658,7 +658,7 @@ function changeLevel() {
         $("#salir").removeAttr("style");
         $("#salir").addClass("salida");
         $("#salir").append("<img src='interfase/btn_check.png' id='si' onmouseover=sonar('yes') class='enlinea' onClick='refresh()'>");
-        $("#salir").append("<img src='interfase/btn_x.png' id='nop' onmouseover=sonar('no') class='enlinea' onClick='window.location.reload()'>");
+        $("#salir").append("<img src='interfase/btn_x.png' id='nop' onmouseover=sonar('no') class='enlinea' onClick='despedida()'>");
       }, 4000);
       }
 }
@@ -678,6 +678,10 @@ function despedida()
 
 function refresh() {
   $("#main").remove();
+  num_img = 8, max_grid=16, max_cards=4, studentImages, currentStudentId=0,
+  currentT=0, currentS=0, shifts=0, shiftsLimit=4, level=1, levelLimit=7,
+  match=1, matchLimit=2, serialT=0, extra=0, iDeck=0, param = {},
+  cvcWord, tWord, wordLenght, barCont=1, audio, creada=false;
   window.location.reload();
   // location.reload(true);
 }
