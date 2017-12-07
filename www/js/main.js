@@ -658,7 +658,7 @@ function changeLevel() {
         $("#salir").removeAttr("style");
         $("#salir").addClass("salida");
         $("#salir").append("<img src='interfase/btn_check.png' id='si' onmouseover=sonar('yes') class='enlinea' onClick='refresh()'>");
-        $("#salir").append("<img src='interfase/btn_x.png' id='nop' onmouseover=sonar('no') class='enlinea' onClick='despedida()'>");
+        $("#salir").append("<img src='interfase/btn_x.png' id='nop' onmouseover=sonar('no') class='enlinea' onClick='window.location.reload()'>");
       }, 4000);
       }
 }
