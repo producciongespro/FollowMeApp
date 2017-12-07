@@ -671,9 +671,13 @@ function despedida()
   $("#main").append("<div><audio class='audios' preload='auto' src='audio/seeyou.mp3' id='bye'></audio></div> ");
   sonar('bye');
   $("#imgBackground").attr("src", "interfase/fondo_pantalla_see you.jpg");
+  setTimeout(function(){
+  navigator.app.exitApp();
+}, 1000);
 }
 
 function refresh() {
+  $("#main").remove();
   location.reload(true);
 }
 
