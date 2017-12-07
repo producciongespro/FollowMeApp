@@ -665,20 +665,21 @@ function changeLevel() {
 
 function despedida()
 {
-  $("#main").remove();
-  $("body").append("<div class='main_container' id='main'>");
-  $("#main").append("<img id='imgBackground' alt=''>");
-  $("#main").append("<div><audio class='audios' preload='auto' src='audio/seeyou.mp3' id='bye'></audio></div> ");
-  sonar('bye');
-  $("#imgBackground").attr("src", "interfase/fondo_pantalla_see you.jpg");
-  setTimeout(function(){
+  // $("#main").remove();
+  // $("body").append("<div class='main_container' id='main'>");
+  // $("#main").append("<img id='imgBackground' alt=''>");
+  // $("#main").append("<div><audio class='audios' preload='auto' src='audio/seeyou.mp3' id='bye'></audio></div> ");
+  // sonar('bye');
+  // $("#imgBackground").attr("src", "interfase/fondo_pantalla_see you.jpg");
+  // setTimeout(function(){
   navigator.app.exitApp();
-}, 1000);
+// }, 1500);
 }
 
 function refresh() {
   $("#main").remove();
-  location.reload(true);
+  window.location.reload();
+  // location.reload(true);
 }
 
 function showImage(imgHtml) {
