@@ -6,6 +6,15 @@ match=1, matchLimit=2, serialT=0, extra=0, iDeck=0, param = {},
 cvcWord, tWord, wordLenght, barCont=1, audio, creada=false;
 
 $(document).ready(function () {
+  preload();
+});
+
+function preload() {
+  num_img = 8; max_grid=16; max_cards=4; studentImages; currentStudentId=0;
+  currentT=0; currentS=0; shifts=0; shiftsLimit=4; level=1; levelLimit=7;
+  match=1; matchLimit=2; serialT=0; extra=0; iDeck=0; param = {};
+  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;
+  preparar();
   $("#student_deck").hide();
   $("#pBar").hide();
   var listaDeAudios=[];
@@ -13,10 +22,39 @@ $(document).ready(function () {
   $.getJSON( ruta, function( data ) {
     listaDeAudios = data;
     cargarAudioVerbos(listaDeAudios);
+    setTimeout(loadGame, 1000);
     });
+}
 
-  setTimeout(loadGame, 2500);
-});
+function preparar() {
+$("body").append("<div class='main_container' id='main'></div>");
+$("#main").append("<audio id='good' src='audio/ok1.wav' autostart='false'></audio>");
+$("#main").append("<audio id='wrong' src='audio/ok2.wav' autostart='false' ></audio>");
+$("#main").append("<audio id='ayuda' src='audio/help.mp3' autostart='false'></audio>");
+$("#main").append("<audio id='acercaDe' src='audio/about.mp3' autostart='false' ></audio>");
+$("#main").append("<audio id='clickear' src='audio/clickboton.wav' autostart='false' ></audio>");
+$("#main").append("<div id='paraImagenes' class='divImagenes'></div>");
+$("#main").append("<div id='paraNivel' class='divLevel'></div>");
+$("#main").append("<img src='interfase/fondo_splash.jpg' id='imgBackground' alt=''>");
+$("#main").append("<div class='grupo_audios'> </div>");
+$("#main").append("<div class='botonera' id='botones' ></div>");
+$("#botones").append("<a id='btnHelp' href='videos/level1.mp4' class='html5lightbox' title='Help'><img class='cliqueables' onmouseover='sonar('ayuda')' src='interfase/btn_help_activo.png'></a>");
+$("#botones").append("<a href='interfase/fondo_acerca.jpg' class='html5lightbox' title='About'><img class='cliqueables' onmouseover='sonar('acercaDe')' src='interfase/btn_about_activo.png'></a>");
+$("#main").append("<div class='mensaje' id='informacion'>");
+$("#informacion").append("<img src='' id='infoMensaje'>");
+$("#main").append("<div class='panelGrande row' id='panelJuego'></div>");
+$("#panelJuego").append("<div id='progress'></div>");
+$("#progress").append("<img id='pBar' src='interfase/barra0.png'>");
+$("#panelJuego").append("<div id='paraTextos' class='divTextos'></div>");
+$("#panelJuego").append("<div class='panel' id='teacher_panel' ></div>");
+$("#panelJuego").append("<div class='panel' id='student_panel' ></div>");
+$("#panelJuego").append("<div class='card_deck' id='student_deck'>");
+$("#student_deck").append("<img src='interfase/bnt_left_activo.png' id='btn_left' onclick='cardsBackward()'>");
+$("#student_deck").append("<img src='interfase/img_deck.png' id='imgDeck'>");
+$("#student_deck").append("<img src='interfase/bnt_right_activo.png' id='btn_right' onclick='cardsForward()'>");
+$("#panelJuego").append("<div class='card_deck' id='teacher_deck'></div>");
+$("#main").append("<div id='dialogMsg' title=''> </div>");
+}
 
 
 function increasePbar() {
@@ -677,13 +715,7 @@ function despedida()
 }
 
 function refresh() {
-  $("#main").remove();
-  num_img = 8, max_grid=16, max_cards=4, studentImages, currentStudentId=0,
-  currentT=0, currentS=0, shifts=0, shiftsLimit=4, level=1, levelLimit=7,
-  match=1, matchLimit=2, serialT=0, extra=0, iDeck=0, param = {},
-  cvcWord, tWord, wordLenght, barCont=1, audio, creada=false;
-  window.location.reload();
-  // location.reload(true);
+  preload();
 }
 
 function showImage(imgHtml) {
