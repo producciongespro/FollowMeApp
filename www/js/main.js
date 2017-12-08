@@ -249,6 +249,7 @@ function loadJasonPictures1_2() {
   var pic=[];
   var pictures=[];
   $.getJSON( "data/images.json", function( data ) {
+      // callback
     var max_array = data.length;
     var selector;
     for (var i = 0; i < max_cards; i++) {
@@ -256,9 +257,10 @@ function loadJasonPictures1_2() {
       pic = data[selector];
       data.splice(selector, 1);
       pictures.push(pic);
+      console.log(pictures);
       max_array--;
     };
-      // callback
+
     console.log("******* LOADED jSON *******");
     createTcards(pictures, max_cards);
     createScards(pictures, max_cards);
