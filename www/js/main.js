@@ -1,9 +1,9 @@
 "use strict";
 
-var num_img = 8, max_grid=16, max_cards=4, studentImages, currentStudentId=0,
-currentT=0, currentS=0, shifts=0, shiftsLimit=4, level=1, levelLimit=7,
-match=1, matchLimit=2, serialT=0, extra=0, iDeck=0, param = {},
-cvcWord, tWord, wordLenght, barCont=1, audio, creada=false, main_array=[];
+var num_img, max_grid, max_cards, studentImages, currentStudentId,
+currentT, currentS, shifts, shiftsLimit, level, levelLimit,
+match, matchLimit, serialT, extra, iDeck, param,
+cvcWord, tWord, wordLenght, barCont, audio, creada, main_array;
 
 $(document).ready(function () {
   preload();
@@ -13,7 +13,7 @@ function preload() {
   num_img = 8; max_grid=16; max_cards=4; studentImages; currentStudentId=0;
   currentT=0; currentS=0; shifts=0; shiftsLimit=4; level=1; levelLimit=7;
   match=1; matchLimit=2; serialT=0; extra=0; iDeck=0; param = {};
-  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;
+  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;main_array=[];
   preparar();
   $("#student_deck").hide();
   $("#pBar").hide();
