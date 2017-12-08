@@ -715,6 +715,7 @@ function despedida()
 }
 
 function refresh() {
+  $("#main").remove();
   preload();
 }
 

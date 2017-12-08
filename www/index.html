@@ -13,45 +13,6 @@
     <title>Follow Me</title>
   </head>
   <body>
-    <div class="main_container" id="main">
-      <audio id="good" src="audio\ok1.wav" autostart="false" ></audio>
-      <audio id="wrong" src="audio\ok2.wav" autostart="false" ></audio>
-      <audio id="ayuda" src="audio\help.mp3" autostart="false" ></audio>
-      <audio id="acercaDe" src="audio\about.mp3" autostart="false" ></audio>
-      <audio id="clickear" src="audio\clickboton.wav" autostart="false" ></audio>
-      <div id="paraImagenes" class="divImagenes"></div>
-      <div id="paraNivel" class="divLevel"></div>
-      <img src="interfase/fondo_splash.jpg" id="imgBackground" alt="">
-      <div class="grupo_audios"> </div>
-      <div class="botonera" id="botones" >
-        <!--  -->
-        <a id="btnHelp" href="videos\level1.mp4" class="html5lightbox" title="Help"><img class='cliqueables' onmouseover="sonar('ayuda')" src='interfase/btn_help_activo.png'></a>
-        <a href="interfase\fondo_acerca.jpg" class="html5lightbox" title="About"><img class='cliqueables' onmouseover="sonar('acercaDe')" src='interfase/btn_about_activo.png'></a>
 
-      </div>
-        <div class="mensaje" id="informacion" >
-        <img src='' id="infoMensaje">
-      </div>
-    <!-- </center> -->
-      <div class='panelGrande row' id='panelJuego'>
-        <div id="progress">
-            <img id="pBar" src="interfase/barra0.png">
-        </div>
-        <div id="paraTextos" class="divTextos"></div>
-
-      <div class="panel" id="teacher_panel" ></div>
-      <div class="panel" id="student_panel" ></div>
-      <div class="card_deck" id="student_deck">
-              <img src="interfase/bnt_left_activo.png" id="btn_left" onclick="cardsBackward()">
-              <img src="interfase/img_deck.png" id="imgDeck">
-              <img src="interfase/bnt_right_activo.png" id="btn_right" onclick="cardsForward()">
-      </div>
-
-    </div>
-      <div class="card_deck" id="teacher_deck"></div>
-
-
-    <div id="dialogMsg" title=""> </div>
-  </div>
   </body>
 </html>

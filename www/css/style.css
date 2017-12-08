@@ -252,7 +252,7 @@ body {
 
 #student_deck{
     left: 54%;
-    margin-top: 31%;
+    margin-top: 28%;
 }
 
 .card_deck {
@@ -444,7 +444,7 @@ body {
 
 #progress {
   left: 79%;
-  top: -2%;
+  top: -6%;
   width: 20%;
   height:10%;
 }
@@ -522,7 +522,7 @@ margin: -100px 0 0 -150; // el primer valor será la mitad de la altura de tu an
 .divLevel{
   position: absolute;
   left: 70%;
-  top: 8vw;
+  top: 7vw;
   z-index: 50;
   width: 200px; // El tamaño de ancho de tu div
   height: 100px; // El tamaño de alto de tu div
