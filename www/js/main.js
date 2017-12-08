@@ -3,7 +3,7 @@
 var num_img = 8, max_grid=16, max_cards=4, studentImages, currentStudentId=0,
 currentT=0, currentS=0, shifts=0, shiftsLimit=4, level=1, levelLimit=7,
 match=1, matchLimit=2, serialT=0, extra=0, iDeck=0, param = {},
-cvcWord, tWord, wordLenght, barCont=1, audio, creada=false;
+cvcWord, tWord, wordLenght, barCont=1, audio, creada=false, main_array=[];
 
 $(document).ready(function () {
   preload();
@@ -21,6 +21,7 @@ function preload() {
   var ruta = "data/images.json";
   $.getJSON( ruta, function( data ) {
     listaDeAudios = data;
+    main_array=data;
     cargarAudioVerbos(listaDeAudios);
     setTimeout(loadGame, 1000);
     });
@@ -248,14 +249,14 @@ function loadJasonPictures1_2() {
 	console.log("Executing: loadJasonPictures1_2");
   var pic=[];
   var pictures=[];
-  $.getJSON( "data/images.json", function( data ) {
+  // $.getJSON( "data/images.json", function( data ) {
       // callback
-    var max_array = data.length;
+    var max_array = main_array.length;
     var selector;
     for (var i = 0; i < max_cards; i++) {
       selector = Math.floor((Math.random() * max_array));
-      pic = data[selector];
-      data.splice(selector, 1);
+      pic = main_array[selector];
+    main_array.splice(selector, 1);
       pictures.push(pic);
       console.log(pictures);
       max_array--;
@@ -269,7 +270,7 @@ function loadJasonPictures1_2() {
       showStudentCards();
     // Event Listeners
     eventListeners();
-  });
+  // });
 
 }
 
@@ -279,17 +280,17 @@ function loadJasonPictures3() {
   var pictureList=[];
   console.log(extra);
 
-  $.getJSON( "data/images.json", function( data ) {
-    var max_array = data.length;
+  // $.getJSON( "data/images.json", function( data ) {
+    var max_array = main_array.length;
     var selector;
     extra=max_cards+extra;
     for (var i = 0; i < extra; i++) {
       selector = Math.floor((Math.random() * max_array));
-      picture = data[selector];
-      data.splice(selector, 1);
+      picture = main_array[selector];
+      main_array.splice(selector, 1);
       pictureList.push(picture);
       max_array--;
-    };
+     };
     // callback
     createTcards(pictureList, max_cards);
     createScards(pictureList, max_cards);
@@ -298,7 +299,7 @@ function loadJasonPictures3() {
       showStudentCards();
     // Event Listeners
     eventListeners();
-  });
+  // });
 
 };
 
