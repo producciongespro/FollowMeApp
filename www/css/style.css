@@ -164,11 +164,24 @@ body {
 .salida{
       width: 29vw;
       height: 13vw;
-      top: 32vw;
-      left: 36vw;
+      top: 28vw;
+      left: 49vw;
       display: inline-block !important;
       position: absolute;
 }
+
+#textoSalir{
+  width: 29vw;
+  height: 5vw;
+  top: 22vw;
+  left: 49vw;
+  display: inline-block !important;
+  position: absolute;
+  }
+
+  #imgTextoSalir{
+    height: 94%;
+  }
 
 #nop{
   float: right;
@@ -190,10 +203,66 @@ body {
 .main_container {
   height: 95%;
   width: 95%;
-  top: 2.5%;
-  left: 2.5%;
-
+  top: 1.5%;
+  left: 1%;
+  z-index: -200;
   /*background-color: #98cc86;*/
+}
+
+#objLogrado, #objNoLogrado{
+  width: 25%;
+  -webkit-transform: rotate(-21deg);
+-moz-transform: rotate(-21deg);
+rotation: -21deg;
+float: left;
+}
+
+#tiempoLogrado, #tiempoNoLogrado{
+  width: 25%;
+  align-self: center;
+  margin-top: -7%;
+}
+
+#repLogrado, #repNoLogrado{
+  width: 25%;
+  -webkit-transform: rotate(21deg);
+-moz-transform: rotate(21deg);
+rotation: 21deg;
+float: right;
+}
+
+#trofeo{
+  width: 25vw;
+}
+
+#resultado{
+  height: 5vw;
+  width: 24vw;
+  top: 14vw;
+  left: 9vw;
+  z-index: 220;
+}
+
+#premio{
+  height: 25vw;
+  width: 25vw;
+  top: 20vw;
+  left: 9vw;
+  z-index: 220;
+}
+
+.contenedor_secundario {
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  z-index: -199;
+  /*background-color: #98cc86;*/
+}
+
+#main{
+  z-index: -2;
+  /*height: 79%;*/
 }
 
 .panelGrande {
@@ -410,10 +479,10 @@ body {
 
 
 .botonera{
-  margin-top: 0%;
-  margin-left: 76%;
+  top: 0%;
+  left: 76%;
   padding: 1%;
-  height: 41%;
+  height: 61%;
   visibility: hidden;
 }
 
@@ -421,7 +490,7 @@ body {
   margin-top: 8vw;
   left: 14vw;
   padding: 0%;
-  visibility: hidden;
+  /*visibility: hidden;*/
   z-index: 200;
   border-style: outset;
   /*border: 3px;*/

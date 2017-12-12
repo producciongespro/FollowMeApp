@@ -81,5 +81,6 @@
   {"id":79, "name":"img_zombie", "word":"zombie"},
   {"id":80, "name":"img_zoo", "word":"zoo"},
   {"id":81, "name":"img_mat", "word":"mat"},
-  {"id":82, "name":"img_tin", "word":"tin"}
+  {"id":82, "name":"img_tin", "word":"tin"},
+  {"id":83, "name":"img_top", "word":"top"}
 ]

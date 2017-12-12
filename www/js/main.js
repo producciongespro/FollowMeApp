@@ -2,18 +2,36 @@
 
 var num_img, max_grid, max_cards, studentImages, currentStudentId,
 currentT, currentS, shifts, shiftsLimit, level, levelLimit,
-match, matchLimit, serialT, extra, iDeck, param,
-cvcWord, tWord, wordLenght, barCont, audio, creada, main_array;
+match, matchLimit, serialT, extra, iDeck, param, objetivo, tiempo, repeticiones,
+cvcWord, tWord, wordLenght, barCont, audio, creada, contenedor_array;
 
 $(document).ready(function () {
   preload();
+  console.log("preload");
+  $('#vidBox').VideoPopUp({
+     backgroundColor: "#17212a",
+     opener: "video1",
+       maxweight: "340",
+       idvideo: "v1"
+   });
 });
+
+// $(function () {
+//    $('#vidBox').VideoPopUp({
+//       backgroundColor: "#17212a",
+//       opener: "video1",
+//         maxweight: "340",
+//         idvideo: "v1"
+//     });
+// });
+
+
 
 function preload() {
   num_img = 8; max_grid=16; max_cards=4; studentImages; currentStudentId=0;
   currentT=0; currentS=0; shifts=0; shiftsLimit=4; level=1; levelLimit=7;
-  match=1; matchLimit=2; serialT=0; extra=0; iDeck=0; param = {};
-  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;main_array=[];
+  match=1; matchLimit=2; serialT=0; extra=0; iDeck=0; param = {}; objetivo=true; tiempo=true; repeticiones=true;
+  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;contenedor_array=[];
   preparar();
   $("#student_deck").hide();
   $("#pBar").hide();
@@ -21,31 +39,35 @@ function preload() {
   var ruta = "data/images.json";
   $.getJSON( ruta, function( data ) {
     listaDeAudios = data;
-    main_array=data;
+    contenedor_array=data;
     cargarAudioVerbos(listaDeAudios);
     setTimeout(loadGame, 1000);
     });
 }
 
 function preparar() {
-$("body").append("<div class='main_container' id='main'></div>");
-$("#main").append("<audio id='good' src='audio/ok1.wav' autostart='false'></audio>");
-$("#main").append("<audio id='wrong' src='audio/ok2.wav' autostart='false' ></audio>");
-$("#main").append("<audio id='ayuda' src='audio/help.mp3' autostart='false'></audio>");
-$("#main").append("<audio id='acercaDe' src='audio/about.mp3' autostart='false' ></audio>");
-$("#main").append("<audio id='clickear' src='audio/clickboton.wav' autostart='false' ></audio>");
-$("#main").append("<div id='paraImagenes' class='divImagenes'></div>");
-$("#main").append("<div id='paraNivel' class='divLevel'></div>");
-$("#main").append("<img src='interfase/fondo_splash.jpg' id='imgBackground' alt=''>");
-$("#main").append("<div class='grupo_audios'> </div>");
-$("#main").append("<div class='botonera' id='botones' ></div>");
-$("#botones").append("<a id='btnHelp' href='videos/level1.mp4' class='html5lightbox' title='Help'></a>");
-$("#btnHelp").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'>");
+  //prepararMensaje();
+$("#main").append("<div class='contenedor_secundario' id='contenedor'></div>");
+$("#contenedor").append("<audio id='good' src='audio/ok1.wav' autostart='false'></audio>");
+$("#contenedor").append("<audio id='wrong' src='audio/ok2.wav' autostart='false' ></audio>");
+$("#contenedor").append("<audio id='ayuda' src='audio/help.mp3' autostart='false'></audio>");
+$("#contenedor").append("<audio id='acercaDe' src='audio/about.mp3' autostart='false' ></audio>");
+$("#contenedor").append("<audio id='clickear' src='audio/clickboton.wav' autostart='false' ></audio>");
+$("#contenedor").append("<div id='paraImagenes' class='divImagenes'></div>");
+$("#contenedor").append("<div id='paraNivel' class='divLevel'></div>");
+$("#contenedor").append("<img src='interfase/fondo_splash.jpg' id='imgBackground' alt=''>");
+$("#contenedor").append("<div class='grupo_audios'> </div>");
+$("#contenedor").append("<div class='botonera' id='botones' ></div>");
+// $("#botones").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png' onClick='showMessage()'>");
+$("#contenedor").append("<div id='vidBox'><div id='videCont'><video  id='v1' loop controls><source src='videos/level1.mp4' type='video/mp4'></video> </div>");
+
+$("#botones").append("<a href='javascript:void(0)' id='video1'> <img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'> </a>");
+// $("#btnHelp").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'>");
 $("#botones").append("<a id='btnAbout' href='interfase/fondo_acerca.jpg' class='html5lightbox' title='About'></a>");
 $("#btnAbout").append("<img class='cliqueables' onmouseover='sonar("+'"acercaDe"'+")' src='interfase/btn_about_activo.png'>");
-$("#main").append("<div class='mensaje' id='informacion'>");
-$("#informacion").append("<img src='' id='infoMensaje'>");
-$("#main").append("<div class='panelGrande row' id='panelJuego'></div>");
+$("#contenedor").append("<div class='mensaje' id='informacion'>");
+$("#informacion").append("<img src='interfase/gane_nivel.jpg' id='infoMensaje'>");
+$("#contenedor").append("<div class='panelGrande row' id='panelJuego'></div>");
 $("#panelJuego").append("<div id='progress'></div>");
 $("#progress").append("<img id='pBar' src='interfase/barra0.png'>");
 $("#panelJuego").append("<div id='paraTextos' class='divTextos'></div>");
@@ -56,7 +78,7 @@ $("#student_deck").append("<img src='interfase/bnt_left_activo.png' id='btn_left
 $("#student_deck").append("<img src='interfase/img_deck.png' id='imgDeck'>");
 $("#student_deck").append("<img src='interfase/bnt_right_activo.png' id='btn_right' onclick='cardsForward()'>");
 $("#panelJuego").append("<div class='card_deck' id='teacher_deck'></div>");
-$("#main").append("<div id='dialogMsg' title=''> </div>");
+$("#contenedor").append("<div id='dialogMsg' title=''> </div>");
 }
 
 
@@ -183,7 +205,7 @@ function createGrid() {
 
      }
     $("#student_deck").remove();
-    $("#main").append("<div class='card_deck' id='student_deck'></div>");
+    $("#contenedor").append("<div class='card_deck' id='student_deck'></div>");
 
     $("#student_deck").append("<div class='container_scards' id='container0'>");
     $("#container0").append("<div class='s_cards letterCardsStudent' id='cardToShow0'>");
@@ -253,12 +275,12 @@ function loadJasonPictures1_2() {
   var pictures=[];
   // $.getJSON( "data/images.json", function( data ) {
       // callback
-    var max_array = main_array.length;
+    var max_array = contenedor_array.length;
     var selector;
     for (var i = 0; i < max_cards; i++) {
       selector = Math.floor((Math.random() * max_array));
-      pic = main_array[selector];
-    main_array.splice(selector, 1);
+      pic = contenedor_array[selector];
+    contenedor_array.splice(selector, 1);
       pictures.push(pic);
       console.log(pictures);
       max_array--;
@@ -283,13 +305,13 @@ function loadJasonPictures3() {
   console.log(extra);
 
   // $.getJSON( "data/images.json", function( data ) {
-    var max_array = main_array.length;
+    var max_array = contenedor_array.length;
     var selector;
     extra=max_cards+extra;
     for (var i = 0; i < extra; i++) {
       selector = Math.floor((Math.random() * max_array));
-      picture = main_array[selector];
-      main_array.splice(selector, 1);
+      picture = contenedor_array[selector];
+      contenedor_array.splice(selector, 1);
       pictureList.push(picture);
       max_array--;
      };
@@ -582,6 +604,8 @@ function checkPositionCards(cell) {
       var sound = document.getElementById("wrong");
           sound.play();
         console.log("error!!!!");
+        repeticiones=false;
+        console.log(repeticiones);
             // showMessage("Opps! Try Again...");
           if (level>=4) {
             $("#"+currentStudentId).position({
@@ -664,13 +688,13 @@ function changeLevel() {
   level++;
 
     if (level==1) {
-      $("#btnHelp").attr("href","videos/level1.mp4");
+      $("#v1").attr("src","videos/level1.mp4");
     }
     if ((level==2) || (level==3)){
-      $("#btnHelp").attr("href","videos/level2.mp4");
+      $("#v1").attr("src","videos/level2.mp4");
     }
     if (level==4)  {
-      $("#btnHelp").attr("href","videos/level3.mp4");
+      $("#v1").attr("src","videos/level3.mp4");
     }
     if (level<levelLimit) {
       console.log("---calling--> changeLevel: "+level);
@@ -682,36 +706,51 @@ function changeLevel() {
 
       $("#imgBackground").css("z-index", "100");
       // showMessage("Congratulations!!!");
-      $("#main").remove();
-      $("body").append("<div class='main_container' id='main'>");
-      $("#main").append("<img id='imgBackground' alt=''>");
-      $("#imgBackground").attr("src", "interfase/congratulations.jpg");
-      setTimeout(function(){
-        $("#main").remove();
-        $("body").append("<div class='main_container' id='main'>");
-        $("#main").append("<img id='imgBackground' alt=''>");
-        $("#main").append("<div id='audiosFinales'><audio class='audios' preload='auto' src='audio/playagain.mp3' id='playagain'></audio></div> ");
+        $("#contenedor").remove();
+        $("#main").append("<div class='main_container' id='contenedor'>");
+        $("#contenedor").append("<img id='imgBackground' alt=''>");
+        $("#contenedor").append("<div id='audiosFinales'><audio class='audios' preload='auto' src='audio/playagain.mp3' id='playagain'></audio></div> ");
         sonar('playagain');
         $("#audiosFinales").append("<audio class='audios' preload='auto' src='audio/yes.mp3' id='yes'></audio>");
         $("#audiosFinales").append("<audio class='audios' preload='auto' src='audio/no.mp3' id='no'></audio>");
-        $("#imgBackground").attr("src", "interfase/fondo_pantalla_again.jpg");
-        // $("#main").append("<div id='confirmarSalida'>Do you want to play again?<div><br>");
-
-        $("#main").append("<div id='salir'></div>");
+        $("#imgBackground").attr("src", "interfase/fondo.jpg");
+        // $("#contenedor").append("<div id='confirmarSalida'>Do you want to play again?<div><br>");
+        $("#contenedor").append("<div id='resultado'></div>");
+        $("#contenedor").append("<div id='premio'></div>");
+        $("#resultado").append("<center><div id='star1'></div><div id='star2'></div><div id='star3'></div></center><br>");
+        if (tiempo==true) {
+            $("#star1").append("<img id='objLogrado' src='interfase/star-activa.png' alt=''>");
+        } else {
+            $("#star1").append("<img id='objNoLogrado' src='interfase/star-inactiva.png' alt=''>");
+        }
+        if (tiempo==true) {
+            $("#star2").append("<img id='tiempoLogrado' src='interfase/star-activa.png' alt=''>");
+        } else {
+            $("#star2").append("<img id='tiempoNoLogrado' src='interfase/star-inactiva.png' alt=''>");
+        }
+        if (repeticiones==true) {
+            $("#star3").append("<img id='repLogrado' src='interfase/star-activa.png' alt=''>");
+        } else {
+            $("#star3").append("<img id='repNoLogrado' src='interfase/star-inactiva.png' alt=''>");
+        }
+        $("#premio").append("<img id='trofeo' src='interfase/trophy.png' alt=''>");
+        $("#contenedor").append("<div id='salir'></div>");
+        $("#contenedor").append("<div id='textoSalir'></div>");
+        $("#textoSalir").append("<img src='interfase/txt_play_again.png' id='imgTextoSalir'>");
         $("#salir").removeAttr("style");
         $("#salir").addClass("salida");
         $("#salir").append("<img src='interfase/btn_check.png' id='si' onmouseover=sonar('yes') class='enlinea' onClick='refresh()'>");
         $("#salir").append("<img src='interfase/btn_x.png' id='nop' onmouseover=sonar('no') class='enlinea' onClick='despedida()'>");
-      }, 4000);
+
       }
 }
 
 function despedida()
 {
-  // $("#main").remove();
-  // $("body").append("<div class='main_container' id='main'>");
-  // $("#main").append("<img id='imgBackground' alt=''>");
-  // $("#main").append("<div><audio class='audios' preload='auto' src='audio/seeyou.mp3' id='bye'></audio></div> ");
+  // $("#contenedor").remove();
+  // $("body").append("<div class='main_container' id='contenedor'>");
+  // $("#contenedor").append("<img id='imgBackground' alt=''>");
+  // $("#contenedor").append("<div><audio class='audios' preload='auto' src='audio/seeyou.mp3' id='bye'></audio></div> ");
   // sonar('bye');
   // $("#imgBackground").attr("src", "interfase/fondo_pantalla_see you.jpg");
   // setTimeout(function(){
@@ -720,7 +759,7 @@ function despedida()
 }
 
 function refresh() {
-  $("#main").remove();
+  $("#contenedor").remove();
   preload();
 }
 
@@ -745,22 +784,29 @@ $("#paraImagenes").css("visibility","visible");
     }, 2000);
 }
 
-function showMessage(texto) {
-    $("#dialogMsg").html("<p>"+texto+"<p>");
-
-    $( "#dialogMsg" ).dialog({
-        minWidth: 100,
-        minHeight: 150,
-        resizable: false,
-        modal: true,
-          width:'auto',
-        draggable: false,
-        title: texto
-    });
-  $(".ui-dialog-titlebar" ).css("display", "none" );
-    setTimeout(function(){
-        $( "#dialogMsg" ).dialog( "close" );
-    }, 2000);
+function prepararMensaje() {
+  console.log("tratando de mostrar video");
+  $('#vidBox').VideoPopUp({
+     backgroundColor: "#17212a",
+     opener: "video1",
+       maxweight: "340",
+       idvideo: "v1"
+   });
+    // $("#dialogMsg").append("<video width='400' controls> <source src='videos/level1.mp4' type='video/mp4> </video>");
+    //
+    // $( "#dialogMsg" ).dialog({
+    //     minWidth: 100,
+    //     minHeight: 150,
+    //     resizable: false,
+    //     modal: true,
+    //       width:'auto',
+    //     draggable: false,
+    //     title: texto
+    // });
+  // $(".ui-dialog-titlebar" ).css("display", "none" );
+  //   setTimeout(function(){
+  //       $( "#dialogMsg" ).dialog( "close" );
+  //   }, 2000);
 }
 
 function showLevel(texto) {
@@ -782,7 +828,7 @@ function showLevel(texto) {
     });
     $(".ui-dialog-titlebar" ).css("display", "none" );
     $( "#dialogMsg" ).dialog({
-  position: { my: "center", at: "center", of: "#main" }
+  position: { my: "center", at: "center", of: "#contenedor" }
 });
 
     setTimeout(function(){
