@@ -239,7 +239,7 @@ float: right;
   height: 5vw;
   width: 24vw;
   top: 14vw;
-  left: 9vw;
+  left: 13vw;
   z-index: 220;
 }
 
@@ -251,6 +251,16 @@ float: right;
   z-index: 220;
 }
 
+#crono{
+  top:5%;
+  left:5;
+  z-index: 800;
+}
+
+
+#star1, #star2, #star3{
+  width: 17vw;
+}
 .contenedor_secundario {
   height: 100%;
   width: 100%;
@@ -487,10 +497,12 @@ float: right;
 }
 
 .mensaje{
-  margin-top: 8vw;
-  left: 14vw;
+  top: 25%;
+  left: 20%;
   padding: 0%;
-  /*visibility: hidden;*/
+  height: 50%;
+  width: 60%;
+  visibility: hidden;
   z-index: 200;
   border-style: outset;
   /*border: 3px;*/
@@ -503,6 +515,10 @@ float: right;
   cursor: pointer;
 }
 
+#infoMensaje{
+    height: 100%;
+    width: 100%;
+}
 
 #imgDeck {
 	position: absolute;
@@ -513,7 +529,7 @@ float: right;
 
 #progress {
   left: 79%;
-  top: -6%;
+  top: -9%;
   width: 20%;
   height:10%;
 }

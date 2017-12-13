@@ -3,7 +3,7 @@
 var num_img, max_grid, max_cards, studentImages, currentStudentId,
 currentT, currentS, shifts, shiftsLimit, level, levelLimit,
 match, matchLimit, serialT, extra, iDeck, param, objetivo, tiempo, repeticiones,
-cvcWord, tWord, wordLenght, barCont, audio, creada, contenedor_array;
+cvcWord, tWord, wordLenght, barCont, audio, creada, contenedor_array, tiempoTranscurrido;
 
 $(document).ready(function () {
   preload();
@@ -31,7 +31,7 @@ function preload() {
   num_img = 8; max_grid=16; max_cards=4; studentImages; currentStudentId=0;
   currentT=0; currentS=0; shifts=0; shiftsLimit=4; level=1; levelLimit=7;
   match=1; matchLimit=2; serialT=0; extra=0; iDeck=0; param = {}; objetivo=true; tiempo=true; repeticiones=true;
-  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;contenedor_array=[];
+  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;contenedor_array=[]; tiempoTranscurrido=-4;
   preparar();
   $("#student_deck").hide();
   $("#pBar").hide();
@@ -42,12 +42,15 @@ function preload() {
     contenedor_array=data;
     cargarAudioVerbos(listaDeAudios);
     setTimeout(loadGame, 1000);
+    cronometro()
     });
 }
+
 
 function preparar() {
   //prepararMensaje();
 $("#main").append("<div class='contenedor_secundario' id='contenedor'></div>");
+$("#contenedor").append("<div id='crono'> </div>");
 $("#contenedor").append("<audio id='good' src='audio/ok1.wav' autostart='false'></audio>");
 $("#contenedor").append("<audio id='wrong' src='audio/ok2.wav' autostart='false' ></audio>");
 $("#contenedor").append("<audio id='ayuda' src='audio/help.mp3' autostart='false'></audio>");
@@ -59,7 +62,7 @@ $("#contenedor").append("<img src='interfase/fondo_splash.jpg' id='imgBackground
 $("#contenedor").append("<div class='grupo_audios'> </div>");
 $("#contenedor").append("<div class='botonera' id='botones' ></div>");
 // $("#botones").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png' onClick='showMessage()'>");
-$("#contenedor").append("<div id='vidBox'><div id='videCont'><video  id='v1' loop controls><source src='videos/level1.mp4' type='video/mp4'></video> </div>");
+$("#contenedor").append("<div id='vidBox'><div id='videCont'><video  id='v1' controls><source src='videos/level1.mp4' type='video/mp4'></video> </div>");
 
 $("#botones").append("<a href='javascript:void(0)' id='video1'> <img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'> </a>");
 // $("#btnHelp").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'>");
@@ -81,6 +84,15 @@ $("#panelJuego").append("<div class='card_deck' id='teacher_deck'></div>");
 $("#contenedor").append("<div id='dialogMsg' title=''> </div>");
 }
 
+
+function cronometro() {
+  tiempoTranscurrido = setInterval(
+            function(){
+                tiempoTranscurrido++;
+                $("#crono").html("<p>"+tiempoTranscurrido+"</p>");
+            }
+            ,1000);
+}
 
 function increasePbar() {
   var imgBarra = "interfase/barra";
@@ -706,7 +718,11 @@ function changeLevel() {
 
       $("#imgBackground").css("z-index", "100");
       // showMessage("Congratulations!!!");
+        if (tiempoTranscurrido>240) {
+          tiempo=false;
+        }
         $("#contenedor").remove();
+        clearInterval();
         $("#main").append("<div class='main_container' id='contenedor'>");
         $("#contenedor").append("<img id='imgBackground' alt=''>");
         $("#contenedor").append("<div id='audiosFinales'><audio class='audios' preload='auto' src='audio/playagain.mp3' id='playagain'></audio></div> ");
@@ -718,20 +734,20 @@ function changeLevel() {
         $("#contenedor").append("<div id='resultado'></div>");
         $("#contenedor").append("<div id='premio'></div>");
         $("#resultado").append("<center><div id='star1'></div><div id='star2'></div><div id='star3'></div></center><br>");
-        if (tiempo==true) {
-            $("#star1").append("<img id='objLogrado' src='interfase/star-activa.png' alt=''>");
+        if (objetivo==true) {
+            $("#star1").append("<img id='objLogrado' src='interfase/star1-activa.png' alt=''>");
         } else {
-            $("#star1").append("<img id='objNoLogrado' src='interfase/star-inactiva.png' alt=''>");
+            $("#star1").append("<img id='objNoLogrado' src='interfase/star1-inactiva.png' alt=''>");
         }
         if (tiempo==true) {
-            $("#star2").append("<img id='tiempoLogrado' src='interfase/star-activa.png' alt=''>");
+            $("#star2").append("<img id='tiempoLogrado' src='interfase/star2-activa.png' alt=''>");
         } else {
-            $("#star2").append("<img id='tiempoNoLogrado' src='interfase/star-inactiva.png' alt=''>");
+            $("#star2").append("<img id='tiempoNoLogrado' src='interfase/star2-inactiva.png' alt=''>");
         }
         if (repeticiones==true) {
-            $("#star3").append("<img id='repLogrado' src='interfase/star-activa.png' alt=''>");
+            $("#star3").append("<img id='repLogrado' src='interfase/star3-activa.png' alt=''>");
         } else {
-            $("#star3").append("<img id='repNoLogrado' src='interfase/star-inactiva.png' alt=''>");
+            $("#star3").append("<img id='repNoLogrado' src='interfase/star3-inactiva.png' alt=''>");
         }
         $("#premio").append("<img id='trofeo' src='interfase/trophy.png' alt=''>");
         $("#contenedor").append("<div id='salir'></div>");
@@ -759,8 +775,9 @@ function despedida()
 }
 
 function refresh() {
-  $("#contenedor").remove();
-  preload();
+  location.reload(true);
+  // $("#contenedor").remove();
+  // preload();
 }
 
 function showImage(imgHtml) {
