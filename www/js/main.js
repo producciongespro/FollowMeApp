@@ -3,7 +3,8 @@
 var num_img, max_grid, max_cards, studentImages, currentStudentId,
 currentT, currentS, shifts, shiftsLimit, level, levelLimit,
 match, matchLimit, serialT, extra, iDeck, param, objetivo, tiempo, repeticiones,
-cvcWord, tWord, wordLenght, barCont, audio, creada, contenedor_array, tiempoTranscurrido;
+cvcWord, tWord, wordLenght, barCont, audio, creada, contenedor_array, w, datoWorker;;
+
 
 $(document).ready(function () {
   preload();
@@ -16,22 +17,11 @@ $(document).ready(function () {
    });
 });
 
-// $(function () {
-//    $('#vidBox').VideoPopUp({
-//       backgroundColor: "#17212a",
-//       opener: "video1",
-//         maxweight: "340",
-//         idvideo: "v1"
-//     });
-// });
-
-
-
 function preload() {
   num_img = 8; max_grid=16; max_cards=4; studentImages; currentStudentId=0;
   currentT=0; currentS=0; shifts=0; shiftsLimit=4; level=1; levelLimit=7;
   match=1; matchLimit=2; serialT=0; extra=0; iDeck=0; param = {}; objetivo=true; tiempo=true; repeticiones=true;
-  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;contenedor_array=[]; tiempoTranscurrido=-4;
+  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;contenedor_array=[];
   preparar();
   $("#student_deck").hide();
   $("#pBar").hide();
@@ -42,8 +32,7 @@ function preload() {
     contenedor_array=data;
     cargarAudioVerbos(listaDeAudios);
     setTimeout(loadGame, 1000);
-    cronometro()
-    });
+  });
 }
 
 
@@ -61,11 +50,11 @@ $("#contenedor").append("<div id='paraNivel' class='divLevel'></div>");
 $("#contenedor").append("<img src='interfase/fondo_splash.jpg' id='imgBackground' alt=''>");
 $("#contenedor").append("<div class='grupo_audios'> </div>");
 $("#contenedor").append("<div class='botonera' id='botones' ></div>");
-// $("#botones").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png' onClick='showMessage()'>");
-$("#contenedor").append("<div id='vidBox'><div id='videCont'><video  id='v1' controls><source src='videos/level1.mp4' type='video/mp4'></video> </div>");
+// $("#botones").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'>");
+// $("#contenedor").append("<div id='vidBox'><div id='videCont'><video  id='v1' controls><source src='videos/level1.mp4' type='video/mp4'></video> </div>");
 
-$("#botones").append("<a href='javascript:void(0)' id='video1'> <img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'> </a>");
-// $("#btnHelp").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'>");
+$("#botones").append("<a id='btnHelp' href='videos/level1.mp4' class='html5lightbox' title='Help'</a>");
+$("#btnHelp").append("<img class='cliqueables' onmouseover='sonar("+'"ayuda"'+")' src='interfase/btn_help_activo.png'>");
 $("#botones").append("<a id='btnAbout' href='interfase/fondo_acerca.jpg' class='html5lightbox' title='About'></a>");
 $("#btnAbout").append("<img class='cliqueables' onmouseover='sonar("+'"acercaDe"'+")' src='interfase/btn_about_activo.png'>");
 $("#contenedor").append("<div class='mensaje' id='informacion'>");
@@ -82,17 +71,21 @@ $("#student_deck").append("<img src='interfase/img_deck.png' id='imgDeck'>");
 $("#student_deck").append("<img src='interfase/bnt_right_activo.png' id='btn_right' onclick='cardsForward()'>");
 $("#panelJuego").append("<div class='card_deck' id='teacher_deck'></div>");
 $("#contenedor").append("<div id='dialogMsg' title=''> </div>");
+startWorker();
 }
 
+function startWorker() {
 
-function cronometro() {
-  tiempoTranscurrido = setInterval(
-            function(){
-                tiempoTranscurrido++;
-                $("#crono").html("<p>"+tiempoTranscurrido+"</p>");
-            }
-            ,1000);
-}
+  if(typeof(w) == "undefined") {
+      w = new Worker("js/crono.js");
+  }
+    w.onmessage = function(event) {
+            datoWorker = event.data;
+              // $("#crono").text(datoWorker);
+
+          };
+      }
+
 
 function increasePbar() {
   var imgBarra = "interfase/barra";
@@ -217,7 +210,7 @@ function createGrid() {
 
      }
     $("#student_deck").remove();
-    $("#contenedor").append("<div class='card_deck' id='student_deck'></div>");
+    $("#contenedor").append("<div class='card_deckText' id='student_deck'></div>");
 
     $("#student_deck").append("<div class='container_scards' id='container0'>");
     $("#container0").append("<div class='s_cards letterCardsStudent' id='cardToShow0'>");
@@ -247,6 +240,10 @@ function showInfo(info,cual) {
   $("#imgBackground").css('filter', 'blur(5px)');
   $("#panelJuego").css('filter', 'blur(5px)');
   $("#student_deck").css('filter', 'blur(5px)');
+  $("#cardToShow0").css('filter', 'blur(5px)');
+  $("#cardToShow1").css('filter', 'blur(5px)');
+  $("#cardToShow2").css('filter', 'blur(5px)');
+  $("#cardToShow3").css('filter', 'blur(5px)');
   $("#botones").css('filter', 'blur(5px)');
   $("#paraNivel").css('filter', 'blur(5px)');
   $("#infoMensaje").attr("src",info);
@@ -260,6 +257,10 @@ function showInfo(info,cual) {
         $("#imgBackground").css('filter', 'blur(0px)');
         $("#panelJuego").css('filter', 'blur(0px)');
         $("#student_deck").css('filter', 'blur(0px)');
+        $("#cardToShow0").css('filter', 'blur(0px)');
+        $("#cardToShow1").css('filter', 'blur(0px)');
+        $("#cardToShow2").css('filter', 'blur(0px)');
+        $("#cardToShow3").css('filter', 'blur(0px)');
         $("#botones").css('filter', 'blur(0px)');
         $("#paraNivel").css('filter', 'blur(0px)');
         $("#informacion").css('visibility', 'hidden');
@@ -699,30 +700,33 @@ function changeMatch() {
 function changeLevel() {
   level++;
 
-    if (level==1) {
-      $("#v1").attr("src","videos/level1.mp4");
+  if (level==1) {
+    $("#btnHelp").attr("href","videos/level1.mp4");
+  }
+  if ((level==2) || (level==3)){
+    $("#btnHelp").attr("href","videos/level2.mp4");
+  }
+  if (level==4)  {
+    $("#btnHelp").attr("href","videos/level3.mp4");
+  }
+  if (level<levelLimit) {
+    console.log("---calling--> changeLevel: "+level);
+    // showLevel(level);
+    showInfo('interfase/gane_nivel.jpg',"cambio")
+    loadGame();
     }
-    if ((level==2) || (level==3)){
-      $("#v1").attr("src","videos/level2.mp4");
-    }
-    if (level==4)  {
-      $("#v1").attr("src","videos/level3.mp4");
-    }
-    if (level<levelLimit) {
-      console.log("---calling--> changeLevel: "+level);
-      // showLevel(level);
-      showInfo('interfase/gane_nivel.jpg',"cambio")
-      loadGame();
-      }
-      else {
+    else  {
 
       $("#imgBackground").css("z-index", "100");
       // showMessage("Congratulations!!!");
-        if (tiempoTranscurrido>240) {
+
+
+        if (datoWorker>240) {
           tiempo=false;
         }
+        //termina el worker
+        w.terminate();
         $("#contenedor").remove();
-        clearInterval();
         $("#main").append("<div class='main_container' id='contenedor'>");
         $("#contenedor").append("<img id='imgBackground' alt=''>");
         $("#contenedor").append("<div id='audiosFinales'><audio class='audios' preload='auto' src='audio/playagain.mp3' id='playagain'></audio></div> ");
@@ -763,15 +767,12 @@ function changeLevel() {
 
 function despedida()
 {
-  // $("#contenedor").remove();
-  // $("body").append("<div class='main_container' id='contenedor'>");
-  // $("#contenedor").append("<img id='imgBackground' alt=''>");
-  // $("#contenedor").append("<div><audio class='audios' preload='auto' src='audio/seeyou.mp3' id='bye'></audio></div> ");
-  // sonar('bye');
-  // $("#imgBackground").attr("src", "interfase/fondo_pantalla_see you.jpg");
-  // setTimeout(function(){
-  navigator.app.exitApp();
-// }, 1500);
+  $("#contenedor").remove();
+  $("#main").append("<div class='main_container' id='contenedor'>");
+  $("#contenedor").append("<img id='imgBackground' alt=''>");
+  $("#contenedor").append("<div><audio class='audios' preload='auto' src='audio/seeyou.mp3' id='bye'></audio></div> ");
+  sonar('bye');
+  $("#imgBackground").attr("src", "interfase/fondo_pantalla_see you.jpg");
 }
 
 function refresh() {
