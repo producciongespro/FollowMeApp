@@ -204,7 +204,7 @@ body {
 .main_container {
   height: 95%;
   width: 95%;
-  top: 1.5%;
+  top: 2.5%;
   left: 2%;
   z-index: -200;
   background-color: #333333;
@@ -330,19 +330,22 @@ float: right;
     box-shadow: 2px 2px 5px rgba(71,71,71,1);
 }
 
-#student_deck{
-    left: 54%;
-    margin-top: 28%;
-}
+/* #student_deck{
+    left: 59%;
+    margin-top: 29%;
+} */
 
 .card_deck {
-  width: 43%;
-  top: 4%;
+  left: 59%;
+  margin-top: 30%;
+  width: 35%;
+  /* top: 4%; */
 }
 
 .card_deckText {
   width: 43%;
-  top: 10%;
+  top: 68%;
+  left: 54%;
 }
 
 .grid {

@@ -239,11 +239,12 @@ function showInfo(info,cual) {
 
   $("#imgBackground").css('filter', 'blur(5px)');
   $("#panelJuego").css('filter', 'blur(5px)');
-  $("#student_deck").css('filter', 'blur(5px)');
-  $("#cardToShow0").css('filter', 'blur(5px)');
-  $("#cardToShow1").css('filter', 'blur(5px)');
-  $("#cardToShow2").css('filter', 'blur(5px)');
-  $("#cardToShow3").css('filter', 'blur(5px)');
+  // $("#student_deck").css('filter', 'blur(5px)');
+  // $("#student_deck").attr('visibility', 'hidden');
+  // $("#cardToShow0").css('filter', 'blur(5px)');
+  // $("#cardToShow1").css('filter', 'blur(5px)');
+  // $("#cardToShow2").css('filter', 'blur(5px)');
+  // $("#cardToShow3").css('filter', 'blur(5px)');
   $("#botones").css('filter', 'blur(5px)');
   $("#paraNivel").css('filter', 'blur(5px)');
   $("#infoMensaje").attr("src",info);
@@ -254,13 +255,14 @@ function showInfo(info,cual) {
   $("#infoMensaje").attr("width","100%");
     setTimeout(function(){
       if (cual != "creditos") {
+        $("#student_deck").attr('visibility', 'visible');
         $("#imgBackground").css('filter', 'blur(0px)');
         $("#panelJuego").css('filter', 'blur(0px)');
-        $("#student_deck").css('filter', 'blur(0px)');
-        $("#cardToShow0").css('filter', 'blur(0px)');
-        $("#cardToShow1").css('filter', 'blur(0px)');
-        $("#cardToShow2").css('filter', 'blur(0px)');
-        $("#cardToShow3").css('filter', 'blur(0px)');
+        // $("#student_deck").css('filter', 'blur(0px)');
+        // $("#cardToShow0").css('filter', 'blur(0px)');
+        // $("#cardToShow1").css('filter', 'blur(0px)');
+        // $("#cardToShow2").css('filter', 'blur(0px)');
+        // $("#cardToShow3").css('filter', 'blur(0px)');
         $("#botones").css('filter', 'blur(0px)');
         $("#paraNivel").css('filter', 'blur(0px)');
         $("#informacion").css('visibility', 'hidden');
@@ -708,6 +710,7 @@ function changeLevel() {
   }
   if (level==4)  {
     $("#btnHelp").attr("href","videos/level3.mp4");
+    $("student_deck").removeClass();
   }
   if (level<levelLimit) {
     console.log("---calling--> changeLevel: "+level);
@@ -727,7 +730,7 @@ function changeLevel() {
         //termina el worker
         w.terminate();
         $("#contenedor").remove();
-        $("#main").append("<div class='main_container' id='contenedor'>");
+        $("#main").append("<div class='contenedor_secundario' id='contenedor'>");
         $("#contenedor").append("<img id='imgBackground' alt=''>");
         $("#contenedor").append("<div id='audiosFinales'><audio class='audios' preload='auto' src='audio/playagain.mp3' id='playagain'></audio></div> ");
         sonar('playagain');
@@ -768,7 +771,7 @@ function changeLevel() {
 function despedida()
 {
   $("#contenedor").remove();
-  $("#main").append("<div class='main_container' id='contenedor'>");
+  $("#main").append("<div class='contenedor_secundario' id='contenedor'>");
   $("#contenedor").append("<img id='imgBackground' alt=''>");
   $("#contenedor").append("<div><audio class='audios' preload='auto' src='audio/seeyou.mp3' id='bye'></audio></div> ");
   sonar('bye');
