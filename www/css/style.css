@@ -232,6 +232,34 @@ rotation: 21deg;
 float: right;
 }
 
+#texto1{
+font-size: 1vw;
+-webkit-transform: rotate(-21deg);
+-moz-transform: rotate(-21deg);
+rotation: -21deg;
+float: left;
+padding-top: 20%;
+}
+
+#texto2{
+  font-size: 1vw;
+  padding-top: 20%;
+align-self: center;
+
+}
+
+#texto3{
+  font-size: 1vw;
+  padding-top: 21%;
+  width: 25%;
+  -webkit-transform: rotate(21deg);
+  -moz-transform: rotate(21deg);
+  rotation: 21deg;
+  float: right;
+  margin-right: -48px;
+  margin-top: 4%;
+}
+
 #trofeo{
   width: 25vw;
 }
@@ -605,10 +633,11 @@ z-index: 200;
 width: 300px; // El tamaño de ancho de tu div
 height: 200px; // El tamaño de alto de tu div
 font-size: 12vw;
-color: white;
+/* color: white; */
+background-color: rgba(5, 117, 157, 0.59);
 align-items: center;
 margin: -100px 0 0 -150; // el primer valor será la mitad de la altura de tu anterior div, y el último la mitad del ancho.
-
+border-radius: 15%;
 }
 
 .divLevel{

@@ -3,7 +3,7 @@
 var num_img, max_grid, max_cards, studentImages, currentStudentId,
 currentT, currentS, shifts, shiftsLimit, level, levelLimit,
 match, matchLimit, serialT, extra, iDeck, param, objetivo, tiempo, repeticiones,
-cvcWord, tWord, wordLenght, barCont, audio, creada, contenedor_array, w, datoWorker;;
+cvcWord, tWord, wordLenght, barCont, audio, creada, contenedor_array, errores, w, datoWorker;;
 
 
 $(document).ready(function () {
@@ -21,7 +21,7 @@ function preload() {
   num_img = 8; max_grid=16; max_cards=4; studentImages; currentStudentId=0;
   currentT=0; currentS=0; shifts=0; shiftsLimit=4; level=1; levelLimit=7;
   match=1; matchLimit=2; serialT=0; extra=0; iDeck=0; param = {}; objetivo=true; tiempo=true; repeticiones=true;
-  cvcWord; tWord; wordLenght; barCont=1; audio; creada=false;contenedor_array=[];
+  cvcWord; tWord; wordLenght; barCont=1; audio; errores=0; creada=false; contenedor_array=[];
   preparar();
   $("#student_deck").hide();
   $("#pBar").hide();
@@ -579,10 +579,6 @@ function checkPositionCards(cell) {
   console.log("-Current Student: "+currentS);
   console.log("-Target: "+ target);
   console.log("-Curent student cell position: "+currentCell);
-  // console.log("Current id Student Card: " +currentStudentId);
-  // console.log("Curent teacher cell position: "+serialT );
-  // console.log("Position of array: "+iDeck);
-  // If it is correct:
   if (currentT==currentS && target == currentCell) {
     var sound = document.getElementById("good");
           sound.play();
@@ -620,6 +616,7 @@ function checkPositionCards(cell) {
           sound.play();
         console.log("error!!!!");
         repeticiones=false;
+        errores++;
         console.log(repeticiones);
             // showMessage("Opps! Try Again...");
           if (level>=4) {
@@ -639,6 +636,24 @@ function checkPositionCards(cell) {
           }
     }
 }
+
+function rebotar(cell) {
+      if (level>=4) {
+        $("#"+currentStudentId).position({
+          my: "top",
+          at: "center",
+          of: "#container"+ currentStudentId.slice(-1),
+        });
+        $("#cardToShow").removeAttr( 'style' );
+      }else {
+        $("#cardToShow").position({
+          my: "top-11%",
+          at: "center",
+          of: "#student_deck",
+        });
+        $("#cardToShow").removeAttr( 'style' );
+      }
+    }
 
 function engraveImage(t) {
   $("#s_grid"+t).attr("src",currentS);
@@ -746,15 +761,18 @@ function changeLevel() {
         } else {
             $("#star1").append("<img id='objNoLogrado' src='interfase/star1-inactiva.png' alt=''>");
         }
+        var segundos=(datoWorker/60).toFixed(2)-Math.trunc(datoWorker/60);
+        segundos= Math.trunc(segundos*60);
+        var tiempoEnMinutos=Math.trunc(datoWorker/60)+(segundos/100);
         if (tiempo==true) {
-            $("#star2").append("<img id='tiempoLogrado' src='interfase/star2-activa.png' alt=''>");
-        } else {
-            $("#star2").append("<img id='tiempoNoLogrado' src='interfase/star2-inactiva.png' alt=''>");
+            $("#star2").append("<img id='tiempoLogrado' src='interfase/star2-activa.png' alt=''><br><span id='texto2'>"+tiempoEnMinutos+"</span>");
+          } else {
+            $("#star2").append("<img id='tiempoNoLogrado' src='interfase/star2-inactiva.png' alt=''><br><span id='texto2'>"+tiempoEnMinutos+"</span>");
         }
         if (repeticiones==true) {
-            $("#star3").append("<img id='repLogrado' src='interfase/star3-activa.png' alt=''>");
+            $("#star3").append("<img id='repLogrado' src='interfase/star3-activa.png' alt=''><br><span id='texto3'>"+errores+"</span>");
         } else {
-            $("#star3").append("<img id='repNoLogrado' src='interfase/star3-inactiva.png' alt=''>");
+            $("#star3").append("<img id='repNoLogrado' src='interfase/star3-inactiva.png' alt=''><br><span id='texto3'>"+errores+"</span>");
         }
         $("#premio").append("<img id='trofeo' src='interfase/trophy.png' alt=''>");
         $("#contenedor").append("<div id='salir'></div>");
@@ -792,7 +810,7 @@ $("#botones").css('filter', 'grayscale(80%)');
 $("#paraNivel").css('filter','grayscale(80%)');
 $("#paraImagenes").css('filter', 'grayscale(0%)');
 
-$("#paraImagenes").html("<img src='img/img_"+imgHtml+".png'><center><p id='palabraPeq'>"+imgHtml+"</p></center>");
+$("#paraImagenes").html("<center><br><img src='img/img_"+imgHtml+".png'><p id='palabraPeq'>"+imgHtml+"</p></center>");
 
 $("#paraImagenes").css("visibility","visible");
     setTimeout(function(){
@@ -863,6 +881,13 @@ function eventListeners() {
   $(".grid").droppable({
     drop: function () {
       checkPositionCards(this);
+      console.log(this);
+    }
+  });
+
+  $(".contenedor_secundario").droppable({
+    drop: function () {
+      rebotar(this);
       console.log(this);
     }
   });
