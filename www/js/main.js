@@ -46,6 +46,7 @@ $("#contenedor").append("<audio id='ayuda' src='audio/help.mp3' autostart='false
 $("#contenedor").append("<audio id='acercaDe' src='audio/about.mp3' autostart='false' ></audio>");
 $("#contenedor").append("<audio id='clickear' src='audio/clickboton.wav' autostart='false' ></audio>");
 $("#contenedor").append("<div id='paraImagenes' class='divImagenes'></div>");
+$("#paraImagenes").css("visibility", "hidden");
 $("#contenedor").append("<div id='paraNivel' class='divLevel'></div>");
 $("#contenedor").append("<img src='interfase/fondo_splash.jpg' id='imgBackground' alt=''>");
 $("#contenedor").append("<div class='grupo_audios'> </div>");
@@ -810,7 +811,7 @@ $("#botones").css('filter', 'grayscale(80%)');
 $("#paraNivel").css('filter','grayscale(80%)');
 $("#paraImagenes").css('filter', 'grayscale(0%)');
 
-$("#paraImagenes").html("<center><br><img src='img/img_"+imgHtml+".png'><p id='palabraPeq'>"+imgHtml+"</p></center>");
+$("#paraImagenes").html("<center><img style='margin-top: 5%' src='img/img_"+imgHtml+".png'><p id='palabraPeq'>"+imgHtml+"</p></center>");
 
 $("#paraImagenes").css("visibility","visible");
     setTimeout(function(){
