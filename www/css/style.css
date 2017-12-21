@@ -225,7 +225,7 @@ float: right;
 }
 
 #repLogrado, #repNoLogrado{
-  width: 30%;
+  width: 33%;
   -webkit-transform: rotate(21deg);
   -moz-transform: rotate(21deg);
   rotation: 21deg;
@@ -235,7 +235,7 @@ float: right;
 
 #paraPremio{
   margin-left: 10%;
-  margin-top: 14%;
+  margin-top: 12%;
   width: 40%;
   height: 57%;
 }
@@ -251,6 +251,7 @@ float: right;
  #espacioTrofeo{
    background-color: rgba(0, 0, 0, 0);
     border: #00000000;
+    border: none;
  }
 
 #texto1{
@@ -278,12 +279,12 @@ padding-top: 20%;
     -moz-transform: rotate(21deg);
     rotation: 21deg;
     float: right;
-    margin-right: 100px;
+    margin-right: 78px;
     margin-top: 0%;
 }
 
 #trofeo{
-  width: 25vw;
+  width: 53%;
 }
 
 #resultado{
