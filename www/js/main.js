@@ -756,7 +756,15 @@ function changeLevel() {
         // $("#contenedor").append("<div id='confirmarSalida'>Do you want to play again?<div><br>");
         $("#contenedor").append("<div id='resultado'></div>");
         $("#contenedor").append("<div id='premio'></div>");
-        $("#resultado").append("<center><div id='star1'></div><div id='star2'></div><div id='star3'></div></center><br>");
+        // $("#resultado").append("<center><div id='star1'></div><div id='star2'></div><div id='star3'></div></center><br>");
+        $("#contenedor").append("<table id='paraPremio'>");
+        $("#paraPremio").append("<tr id='fila1'>");
+        $("#fila1").append("<th id='star1'></th><th id='star2'></th><th id='star3'></th>");
+        // $("#paraPremio").append("<tr id='fila2'>");
+        // $("#fila2").append("<th></th><th></th><th></th>");
+        $("#paraPremio").append("<tr id='fila3'>");
+        $("#fila3").append("<td id='espacioTrofeo' colspan='3'></td>");
+
         if (objetivo==true) {
             $("#star1").append("<img id='objLogrado' src='interfase/star1-activa.png' alt=''>");
         } else {
@@ -765,17 +773,19 @@ function changeLevel() {
         var segundos=(datoWorker/60).toFixed(2)-Math.trunc(datoWorker/60);
         segundos= Math.trunc(segundos*60);
         var tiempoEnMinutos=Math.trunc(datoWorker/60)+(segundos/100);
+
+
         if (tiempo==true) {
-            $("#star2").append("<img id='tiempoLogrado' src='interfase/star2-activa.png' alt=''><br><span id='texto2'>"+tiempoEnMinutos+"</span>");
+            $("#star2").append("<img id='tiempoLogrado' src='interfase/star2-activa.png' alt=''><br class='salto'><span id='texto2'>"+tiempoEnMinutos.toFixed(2)+"</span>");
           } else {
-            $("#star2").append("<img id='tiempoNoLogrado' src='interfase/star2-inactiva.png' alt=''><br><span id='texto2'>"+tiempoEnMinutos+"</span>");
+            $("#star2").append("<img id='tiempoNoLogrado' src='interfase/star2-inactiva.png' alt=''><br class='salto'><span id='texto2'>"+tiempoEnMinutos.toFixed(2)+"</span>");
         }
         if (repeticiones==true) {
-            $("#star3").append("<img id='repLogrado' src='interfase/star3-activa.png' alt=''><br><span id='texto3'>"+errores+"</span>");
+            $("#star3").append("<img id='repLogrado' src='interfase/star3-activa.png' alt=''><br class='salto'><span id='texto3'>"+errores+"</span>");
         } else {
-            $("#star3").append("<img id='repNoLogrado' src='interfase/star3-inactiva.png' alt=''><br><span id='texto3'>"+errores+"</span>");
+            $("#star3").append("<img id='repNoLogrado' src='interfase/star3-inactiva.png' alt=''><br class='salto'><span id='texto3'>"+errores+"</span>");
         }
-        $("#premio").append("<img id='trofeo' src='interfase/trophy.png' alt=''>");
+        $("#espacioTrofeo").append("<center><img id='trofeo' src='interfase/trophy.png' alt=''></center>");
         $("#contenedor").append("<div id='salir'></div>");
         $("#contenedor").append("<div id='textoSalir'></div>");
         $("#textoSalir").append("<img src='interfase/txt_play_again.png' id='imgTextoSalir'>");
